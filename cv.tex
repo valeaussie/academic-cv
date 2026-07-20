@@ -1,0 +1,245 @@
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%
+%	Copyright (c) 2021 Jitin Nair
+%
+%	Permission is hereby granted, free of charge, to any person obtaining a copy
+%	of this software and associated documentation files (the "Software"), to deal
+%	in the Software without restriction, including without limitation the rights
+%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%	copies of the Software, and to permit persons to whom the Software is
+%	furnished to do so, subject to the following conditions:
+%	
+%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+%	THE SOFTWARE.
+%	
+%
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT DEFINITION
+%----------------------------------------------------------------------------------------
+
+% article class because we want to fully customize the page and not use a cv template
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+% % fontspec allows you to use TTF/OTF fonts directly
+% \usepackage{fontspec}
+% \defaultfontfeatures{Ligatures=TeX}
+
+% % modified for ShareLaTeX use
+% \setmainfont[
+% SmallCapsFont = Fontin-SmallCaps.otf,
+% BoldFont = Fontin-Bold.otf,
+% ItalicFont = Fontin-Italic.otf
+% ]
+% {Fontin.otf}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ydnt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+
+
+% job listing environments
+\newenvironment{jobshort}[2]
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill &  #2 \\[3.75pt]
+    \end{tabularx}
+    }
+    {
+    }
+
+\newenvironment{joblong}[2]
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill &  #2 \\[3.75pt]
+    \end{tabularx}
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt,label=--]
+    }
+    {
+    \end{itemize}
+    \end{minipage}    
+    }
+
+
+% sort newest first: change your biblatex load line to use sorting=ydnt
+% \usepackage[style=authoryear,sorting=ydnt,maxbibnames=2]{biblatex}
+
+% bold your surname wherever it appears in an author list
+\usepackage{xstring}
+\renewcommand*{\mkbibnamefamily}[1]{%
+  \IfStrEq{#1}{Di Marco}{\textbf{#1}}{#1}}
+
+% two publication categories
+\DeclareBibliographyCategory{firstauthor}
+\DeclareBibliographyCategory{coauthor}
+
+
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+% \begin{tabularx}{\linewidth}{ @{}X X@{} }
+% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
+% \raisebox{-0.05\height}\faGithub\ username \ | \
+% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
+% \end{tabularx}
+
+\begin{tabularx}{\linewidth}{@{} C @{}}
+\Huge{Dr Valentina Di Marco} \\[7.5pt]
+\href{https://github.com/valeaussie}{\raisebox{-0.05\height}\faGithub\ valeaussie} \ $|$ \ 
+\href{https://www.linkedin.com/in/valentina-di-marco/}{\raisebox{-0.05\height}\faLinkedin\ Valentina Di Marco} \ $|$ \ 
+\href{https://www.valentinadimarco.com/}{\raisebox{-0.05\height}\faGlobe \ www.valentinadimarco.com} \ $|$ \\ 
+%href{mailto:valentina.dimarco@unimelb.edu.au}{\raisebox{-0.05\height}\faEnvelope \ valentina.dimarco@unimelb.edu.au} \ $|$ \ 
+%\href{tel:+61481768710}{\raisebox{-0.05\height}\faMobile \ +61 4 8176 8710} \\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+% EXPERIENCE SECTIONS
+%----------------------------------------------------------------------------------------
+
+%Interests/ Keywords/ Summary
+\section{Summary}
+I am a postdoctoral fellow at the University of Melbourne, working on pulsar science, as part of OzGrav Australian Centre of Excellence and the International Pulsar Timing Array (IPTA) consortium.
+My current research focuses on understanding the nanohertz gravitational-wave sky, a new way of observing the Universe at the lowest gravitational-wave frequencies we can access, and the pulsars we use to observe it. 
+I do this by developing statistical methods and applying them to real data across pulsar and gravitational-wave astronomy.
+This covers Bayesian characterisation of pulsar noise, searches for the nanohertz gravitational-wave background, continuous-wave and pulsar searches using hidden state-space methods, and new pulsar-search techniques using interferometers. 
+
+My PhD addressed a fundamental problem for the field, the statistical reliability of pulsar timing array detections, from the significance of the gravitational-wave background to the inference of its spectrum, and developed more rigorous and efficient approaches to pulsar noise modelling.
+
+I hold an H1 MPhil in computational statistics and a First Class Honours degree in mathematics. 
+Before returning to research, I spent over a decade in industry in digital marketing and data analytics.
+
+%Experience
+%section{Work Experience}
+
+%\begin{jobshort}{Designation}{Jan 2021 - present}
+%long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width
+%\end{jobshort}
+
+
+%\begin{joblong}{Designation}{Mar 2019 - Jan 2021}
+%\item long long line of blah blah that will wrap when the table fills the column width
+%\item again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah. again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah
+%\end{joblong}
+  
+%Projects
+%\section{Projects}
+
+%\begin{tabularx}{\linewidth}{ @{}l r@{} }
+%\textbf{Some Project} & \hfill \href{https://some-link.com}{Link to Demo} \\[3.75pt]
+%\multicolumn{2}{@{}X@{}}{long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width}  \\
+%\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+%\section{Education}
+%\begin{tabularx}{\linewidth}{@{}l X@{}}	
+%2030 - present & PhD (Subject) at \textbf{University} \hfill \normalsize (GPA: 4.0/4.0) \\
+
+%2023 - 2027 & Bachelor's Degree at \textbf{College} \hfill (GPA: 4.0/4.0) \\ 
+
+%2022 & Class 12th Some Board \hfill  (Grades) \\
+
+%2021 & Class 10th Some Board \hfill  (Grades) \\
+%\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS
+%----------------------------------------------------------------------------------------
+\section{Publications}
+\nocite{*}
+\addtocategory{firstauthor}{2023ApJ...956...14D,2024MNRAS.532.4026D,2025ApJ...990...85D,2026arXiv260323817D, 2021arXiv210305217D}
+\addtocategory{coauthor}{2026PhRvD.113l3019H,2026ApJ...998L..42C,2026ApJ...996L...9T,2025MNRAS.542.3028L,2025ApJ...992..181Z,2025Univ...11...81X,2025PhRvD.111f1304H,2024ApJ...966..105A,2023PASA...40...49Z,2023ApJ...951L...7R,2023ApJ...951L...6R, 2026PhRvD.113d3042C, 2025PhRvD.111f1304H, 2025PASA...42..142M, 2025ApJS..276...50T, 2026ChPhL..43e1102Z, 2026MNRAS.549ag835C}
+
+\smallskip\noindent\textbf{First-author publications}\par\smallskip
+\printbibliography[category=firstauthor,heading=none]
+
+\smallskip\noindent\textbf{Co-author publications}\par\smallskip
+\printbibliography[category=coauthor,heading=none]
+
+
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+% \section{Skills}
+% \begin{tabularx}{\linewidth}{@{}l X@{}}
+% Some Skills &  \normalsize{This, That, Some of this and that etc.}\\
+% Some More Skills  &  \normalsize{Also some more of this, Some more that, And some of this and that etc.}\\  
+% \end{tabularx}
+
+\vfill
+\center{\footnotesize Last updated: \today}
+
+\end{document}
